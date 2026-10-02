@@ -1,0 +1,201 @@
+// ปรับแต่งสีตัวแปรของ Bootstrap ก่อน Import
+$primary: #4361ee;
+$success: #2ec4b6;
+$warning: #ff9f1c;
+$danger: #e71d36;
+$info: #4cc9f0;
+
+// นำเข้า Bootstrap SCSS ทั้งหมด
+@import "bootstrap/scss/bootstrap";
+
+/* Google Fonts (Mitr) & Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap');
+
+:root {
+  --app-font: 'Mitr', sans-serif;
+  --card-transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body, h1, h2, h3, h4, h5, h6, p, span, li, a, button, input {
+  font-family: var(--app-font) !important;
+}
+
+body {
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Cards with 3D Tilt Support */
+.glass-card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 1rem;
+  transition: var(--card-transition);
+  transform-style: preserve-3d;
+  will-change: transform;
+
+  [data-bs-theme="dark"] & {
+    background: rgba(30, 35, 45, 0.78);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  &:hover {
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.09);
+
+    [data-bs-theme="dark"] & {
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+    }
+  }
+}
+
+/* Gradient Hero Banner with Spotlight Glow */
+.hero-gradient {
+  background: linear-gradient(135deg, rgba(67, 97, 238, 0.12) 0%, rgba(76, 201, 240, 0.08) 100%);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(67, 97, 238, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Spotlight mouse glow */
+.spotlight-overlay {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(67, 97, 238, 0.18), transparent 40%);
+
+  [data-bs-theme="dark"] & {
+    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(76, 201, 240, 0.15), transparent 40%);
+  }
+}
+
+.hero-gradient:hover .spotlight-overlay {
+  opacity: 1;
+}
+
+/* Floating animation for icons */
+.floating-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Typewriter cursor effect */
+.typewriter-cursor {
+  display: inline-block;
+  font-weight: 300;
+  animation: blink 0.8s infinite;
+  color: var(--bs-primary);
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Button Ripple Effect */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-circle {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  background-color: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Pulse Glow Badge */
+.pulse-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #2ec4b6;
+  box-shadow: 0 0 0 0 rgba(46, 196, 182, 0.7);
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(46, 196, 182, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(46, 196, 182, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(46, 196, 182, 0);
+  }
+}
+
+/* Interactive Color Theme Switcher Pill */
+.color-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    transform: scale(1.25);
+  }
+
+  &.active {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px #4361ee;
+  }
+}
+
+/* Modern button style */
+.btn-modern {
+  border-radius: 0.75rem;
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  transition: all 0.2s ease;
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Confetti Canvas Overlay */
+#confettiCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+}
